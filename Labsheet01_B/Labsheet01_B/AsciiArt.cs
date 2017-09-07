@@ -1,57 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Labsheet01_B
 {
     class AsciiArt
     {
-        List<string> _loadedTemplateText;
+        AsciiArtTemplate _currentTemplate;
 
-
-        public AsciiArt()
+        
+        public AsciiArt(AsciiArtTemplate template)
         {
-            _loadedTemplateText = new List<string>();
+            _currentTemplate = template;
         }
 
-        public bool LoadTemplate(string templatePath)
+        public void Show(string text)
         {
-            var isSuccessful = File.Exists(templatePath);
-
-            if (isSuccessful)
+            for (int i = 0;  i < _currentTemplate.MaxLine; i++)
             {
-                _loadedTemplateText.Clear();
-
-                try
+                foreach (char character in text.ToCharArray())
                 {
-                    using (StreamReader reader = new StreamReader(templatePath))
+                    if (_currentTemplate.Templates.ContainsKey(character))
                     {
-                        var text = reader.ReadLine();
-
-                        do
-                        {
-                            _loadedTemplateText.Add(text);
-                            text = reader.ReadLine();
-
-                        } while (text != null);
-
+                        Console.Write(_currentTemplate.Templates[character][i]);
                     }
                 }
-                catch (Exception e)
-                {
-                    isSuccessful = false;
-                    Console.WriteLine(e.ToString());
-                }
-            }
 
-            return isSuccessful;
-        }
-
-        public void Show()
-        {
-            foreach (string text in _loadedTemplateText)
-            {
-                Console.WriteLine(text);
+                Console.WriteLine();
             }
         }
     }

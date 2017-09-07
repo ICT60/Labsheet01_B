@@ -1,26 +1,17 @@
-﻿using System.IO;
-using System;
+﻿using System;
 
 namespace Labsheet01_B
 {
     class Program
     {
-        const string TEMPLATE_FILE_NAME = "template.txt";
-
-
         static void Main(string[] args)
         {
-            var templateDir = Directory.GetCurrentDirectory();
-            templateDir += ("\\" + TEMPLATE_FILE_NAME);
+            Console.Title = "Labsheet01_B";
 
-            var asciiArt = new AsciiArt();
+            var template = new AsciiArtTemplate();
+            var asciiArt = new AsciiArt(template);
 
-            if (File.Exists(templateDir))
-            {
-                asciiArt.LoadTemplate(TEMPLATE_FILE_NAME);
-                asciiArt.Show();
-            }
-
+            asciiArt.Show("IT Rangsit University");
             Console.ReadLine();
         }
     }

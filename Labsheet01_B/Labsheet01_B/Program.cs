@@ -4,9 +4,15 @@ namespace Labsheet01_B
 {
     class Program
     {
+        static void _SetUpTerminal()
+        {
+            Console.Title = "Labsheet01_B : 6002526";
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight / 2);
+        }
+
         static void Main(string[] args)
         {
-            Console.Title = "Labsheet01_B";
+            _SetUpTerminal();
 
             var template = new AsciiArtTemplate();
             var asciiArt = new AsciiArt(template);

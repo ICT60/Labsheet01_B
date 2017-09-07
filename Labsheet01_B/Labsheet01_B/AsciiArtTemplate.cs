@@ -20,7 +20,7 @@ namespace Labsheet01_B
             _GenerateTemplate();
         }
 
-        void _GenerateTemplate()
+        protected void _GenerateTemplate()
         {
             _maxLine = 7;
 
